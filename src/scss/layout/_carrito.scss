@@ -1,0 +1,17 @@
+@use 'base/variables' as v;
+
+.tabla{
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    background-color: v.$so;
+    margin: 1.5rem;
+}
+
+.tabla td,
+.tabla th{
+    padding: 0 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

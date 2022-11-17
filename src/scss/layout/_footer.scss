@@ -1,0 +1,13 @@
+@use 'base/variables' as v;
+
+.footer {
+    background-color: v.$verdeoscuro;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.footer__texto {
+    text-align: center;
+    font-family: v.$fuenteSecundaria;
+    color: v.$caqui;
+}

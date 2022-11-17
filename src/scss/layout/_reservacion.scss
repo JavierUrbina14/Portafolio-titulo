@@ -1,0 +1,132 @@
+@use 'base/variables' as v;
+
+.bienvenida {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 19rem;
+    margin-right: 19rem;
+    margin-top: 5rem;
+    font-family: v.$fuentePrincipal;
+    font-size: 2.5rem;
+}
+
+.img-reserva {
+    width: 75rem;
+    height: 75rem;
+}
+
+.reservacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+
+.formulario{
+    width: min(65rem, 100%);
+    padding: 2rem;
+    background-color: v.$menta;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend{
+    text-align: center;
+    color: black;
+    font-size: 5rem;
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos{
+        display: grid;
+        grid-template-columns: 50%, 50%;
+    }
+}
+
+
+.campo{
+    margin-bottom: 1rem;
+}
+
+.campo label{
+    color: black;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+
+.input-text{
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.boton-reserva:hover {
+    cursor: pointer;
+}
+
+hr{
+    margin-right: 5rem;
+    margin-left: 5rem;
+}
+
+.formulario__submit {
+    background-color: v.$mentaoscuro;
+    border-color: black;
+    border-radius: 1.5rem;
+    font-size: 2rem;
+    font-size: v.$fuentePrincipal;
+    margin-top: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    transition: background-color .3s ease;
+    justify-content: right;
+}
+
+.formulario__submit:hover {
+    cursor: pointer;
+    background-color: v.$naranjaopaco;
+}
+
+.botoncito{
+    text-align: center;
+    
+}
+
+.boton-cancel{
+    text-decoration: underline;
+}
+
+.alerta{
+    padding: .5rem;
+    margin: 1rem 22rem;
+    text-align: center;
+    text-transform: uppercase;
+    &.error{
+        background-color: rgb(155, 14, 14);
+        color: white;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px){
+    .bienvenida{
+        display: block;
+        font-size: 2rem;
+        margin: 4rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px){
+    .logo-reserva img{
+        width: 29rem;
+    }
+}

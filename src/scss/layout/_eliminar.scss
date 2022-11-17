@@ -1,0 +1,54 @@
+@use 'base/variables' as v;
+
+.elimination-info{
+    text-align: center;
+    font-size: 2.8rem;
+}
+
+.info-dev-eli{
+    font-size: 2rem;
+}
+
+.elimination-table{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 6rem;
+    font-family: v.$fuentePrincipal;
+    font-size: 2.3rem;
+
+}
+
+.elimination-title td{
+    padding: 1rem 2.5rem;
+    background-color: v.$so;
+    font-family: v.$fuenteSecundaria;
+    border-bottom: solid .5rem #0F362D;
+}
+
+.elimination-get:nth-child(odd){
+    background-color: v.$que;
+}
+
+.elimination-get td{
+    padding: 1rem;
+}
+
+.elimination-btn{
+    background-color: v.$mentaoscuro;
+    border-color: black;
+    border-radius: 1rem;
+    font-size: 2rem;
+    font-family: v.$fuenteSecundaria;
+    padding: 1rem;
+    margin-top: 2rem;
+    transition: background-color .3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.elimination-btn:hover {
+    cursor: pointer;
+    background-color: red;
+}

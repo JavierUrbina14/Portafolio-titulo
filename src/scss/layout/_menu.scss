@@ -1,0 +1,75 @@
+@use 'base/variables' as v;
+
+/** GRID **/
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 3rem;
+    row-gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+.producto {
+    background-color: v.$que;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.producto__imagen {
+    width: 100%;
+    height: 25rem;
+}
+
+.producto__nombre {
+    font-size: 4rem;
+    font-family: v.$fuenteSecundaria;
+    color: black;
+}
+
+.producto__precio {
+    font-size: 2.8rem;
+    font-family: v.$fuentePrincipal;
+}
+
+.producto__nombre{
+    font-size: 2.5rem;
+    text-align: center;
+}
+.producto__precio {
+    font-family: v.$fuentePrincipal;
+    margin: 1rem 0;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.formulario__btnsubmenu {
+    background-color: v.$mentaoscuro;
+    border-color: black;
+    border-radius: 1rem;
+    font-size: 2rem;
+    font-size: v.$fuentePrincipal;
+    margin-top: 1rem;
+    padding-left: 10.2rem;
+    padding-right: 10rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    transition: background-color .3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.ancarrito{
+    text-align: center;
+}
+
+.formulario__btnsubmenu:hover {
+    cursor: pointer;
+    background-color: v.$naranjaopaco;
+}
+

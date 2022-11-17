@@ -1,0 +1,36 @@
+@use 'variables' as v;
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    font-size: 16px;
+    font-family: v.$fuentePrincipal;
+    background-color: v.$menta;
+}
+
+.contenedor{
+    max-width: 120rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.68);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.68);
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.68);
+}
+
+
+
+a{
+    text-decoration: none;
+}

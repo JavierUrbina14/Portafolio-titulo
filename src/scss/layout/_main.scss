@@ -1,0 +1,54 @@
+@use 'base/variables' as v;
+
+
+@media (min-width: 768px){
+    .inicio .texto{
+        font-family: v.$fuentePrincipal;
+        font-size: 2rem;
+        text-align: center;
+    }
+};
+
+@media (min-width: 768px){
+    .ubicacion h2{
+        margin: 5rem 0;
+    }
+};
+
+@media (min-width: 768px){
+    .ubicacion{
+        text-align: center;
+    }
+};
+
+@media (min-width: 768px){
+    .ubicacion p{
+        font-size: 2rem;
+        font-family: v.$fuentePrincipal;
+    }
+};
+
+@media (min-width: 768px){
+    .inicio{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin-top: 4rem;
+    }
+};
+
+.inicio{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.inicio .texto{
+    text-align: center;
+    padding-left: 5rem;
+}
+
+.ubicacion{
+    text-align: center;
+}
