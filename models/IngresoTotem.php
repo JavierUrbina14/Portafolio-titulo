@@ -7,17 +7,25 @@ class IngresoTotem extends ActiveRecord{
     //base de datos
 
 
-    public $rut;
+    public $id_invitado;
+    public $rut_invitado;
+    public $fecha_ingreso;
 
-    public function __construct($run)
+    public function __construct($args = [])
     {
-        $this->rut = $run;
+        $this->id_invitado = $args['id_invitado'] ?? null;
+        $this->rut_invitado = $args['rut_invitado'] ?? '';
+        $this->fecha_ingreso = $args['fecha_ingreso'] ?? '';
     }
 
-    public function insercion()
+    public function inserciontotem($rutificador)
     {
-        $inyeccion = "call SP_reservacionTotem('$this->rut');";
-        $resultado = self::$db->query($inyeccion);
+        $inyecciontotem = "call SP_reservacionTotem('$rutificador');";
+        $resultado = self::$db->query($inyecciontotem);
+        if($resultado) {
+            header('location: /ingresoexitoso');
+        }
+
     }
 
 

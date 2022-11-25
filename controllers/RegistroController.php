@@ -19,7 +19,7 @@ class RegistroController{
         $errores = Registro::getValidacion();
 
         //Consulta para la mesa
-        $mesas = Mesa::all();
+        $mesas = Mesa::traermesas();
     
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $registro = new Registro($_POST);

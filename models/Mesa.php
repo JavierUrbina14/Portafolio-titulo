@@ -15,4 +15,11 @@ class Mesa extends ActiveRecord{
         $this->numero_mesa = $args['numero_mesa'] ?? '';
         $this->mesa_disponible = $args['mesa_disponible'] ?? '';
     }
+
+    public static function traermesas()
+    {
+        $query = 'SELECT * FROM mesa WHERE mesa_disponible = true;';
+        $resultado = self::consultarDB($query);
+        return $resultado;
+    }
 }

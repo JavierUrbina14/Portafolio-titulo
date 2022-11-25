@@ -825,7 +825,7 @@ a {
 .backgrnd {
   margin-top: 40rem;
   background-color: #146356;
-  background-image: url(../../src/img/Logotipo_2_Restaurant_Siglo_XXI.png);
+  background-image: url(../img/Logotipo_2_Restaurant_Siglo_XXI.png);
   background-repeat: no-repeat, repeat;
   background-position: center;
   width: 100%;
@@ -881,6 +881,10 @@ a {
   border-radius: 1rem;
 }
 
+.ingresoexbody {
+  background-color: #146356;
+}
+
 .imgconfirmacion {
   text-align: center;
   margin: 15rem;
@@ -897,11 +901,7 @@ a {
 }
 
 .ingresoexbody {
-  background-image: url(../../src/img/Logotipo_1_Restaurant_Siglo_XXI.png);
+  background-image: url(../img/Logotipo_1_Restaurant_Siglo_XXI.png);
   background-repeat: no-repeat, repeat;
   background-position: center;
-}
-
-.ingresoexbody {
-  background-color: #146356;
 }
