@@ -10,7 +10,7 @@
                         familia, donde encontraras tranquilidad, calma, buenos <br>
                         momentos y lo mas importante, ¡Comida casera!</p>
             </div>
-            <img src="build/img/Logotipo_2_Restaurant_Siglo_XXI.webp" alt="">
+            <img src="build/img/Logotipo_2_Restaurant_Siglo_XXI.png" alt="">
             </div>
         </section>
         <section ><!--Seccion ubicacion-->
