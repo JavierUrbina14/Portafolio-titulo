@@ -8,8 +8,15 @@
     <title>Totem</title>
 </head>
 <body class="backgrnd">
+<?php foreach($errores as $error): ?>
+    <div class="alerta error">
+        <?php echo $error; ?>
+    </div>
+    <?php  endforeach; ?>
+    
     
     <div class="totem">
+    
     
         
     <div class='contenedor-totem'>
@@ -20,7 +27,8 @@
             <div class="contenedor-campos">
 
                 <div class="campo-totem">
-                    <input class='input-totem' type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+                    <input class='input-totem' type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT" value='<?php echo $ingresototem->rut ?>'>
+                    <input class="input-totem" type="email" name="correo" placeholder='Ingrese Correo' value='<?php echo $ingresototem->correo ?>'>
                     <script src="build/js/validarRUT.js"></script>
                 </div>
             </div>

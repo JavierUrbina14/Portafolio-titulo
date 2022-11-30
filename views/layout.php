@@ -40,8 +40,6 @@
 
     <footer class="footer">
         <p class="footer__texto">Restaurant Siglo XXI - Todos los derechos reservados 2022.</p>
-        <script src="build/js/bootstrap.bundle.min.js"></script>
-        <script src="build/js/carrito.js"></script>
     </footer>
     </body>
 </html>

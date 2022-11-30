@@ -82,6 +82,6 @@
         </template> 
         
     </main>
-    
+    <script src="build/js/carrito.js"></script>
 </body>
 </html>

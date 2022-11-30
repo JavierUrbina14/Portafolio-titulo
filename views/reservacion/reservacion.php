@@ -32,7 +32,7 @@
 
         <div class="reservacion">
             
-            <form class="formulario sombra" method="POST"><!--Formulario de reserva-->
+            <form class="formulario sombra"  method="POST"><!--Formulario de reserva-->
                 <fieldset>
                     <legend>Reservación</legend>
                     <div class="contenedor-campos">
