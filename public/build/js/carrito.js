@@ -146,6 +146,7 @@ const pintarFooter = () =>{
     templateFooter.querySelectorAll('td')[0].textContent = nCantidad
     templateFooter.querySelector('span').textContent = nPrecio
 
+
     //Una vez más clonamos el nodo
     const clone = templateFooter.cloneNode(true)
     //Lo asignamos al fragment
@@ -184,10 +185,12 @@ function ordenarPedido() {
 
         //Y lo añadimos al formdatoa
         orden.append('producto_id',id)
-        orden.append('cantidad_producto',cantidad)
+        orden.append('cantidad_carrito',cantidad)
+        orden.append('reserva_id','3')
 
         //console.log([...orden])
         
+      
         //Enviamos la información a la api
         const url = 'http://localhost:3000/api/orden'
         const respuesta = await fetch(url, {
@@ -195,9 +198,9 @@ function ordenarPedido() {
         body: orden
         })
         const resultado = await respuesta.json();
-        console.log(resultado)
         return
-    })    
+    })
+    location.href = ('/pedidoexitoso')    
     
 }
 

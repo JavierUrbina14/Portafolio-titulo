@@ -7,6 +7,7 @@ use Model\Registro;
 use Model\Mesa;
 use Model\Eliminar;
 use Model\Reserva;
+use Model\IngresoTotem;
 
 
 class RegistroController{
@@ -56,20 +57,33 @@ class RegistroController{
                 $busqueda = Reserva::find($identificador);
                 $busqueda->eliminar();
                 debuguear($busqueda);
-            }
-            //$busqueda = Reserva::find($identificador);
-            
+            }        
         }
-            //echo ($identificador);
-           /* echo "DELETE FROM Reserva WHERE id_reserva = ${identificador}";
-            $resultado = mysqli_query($db,"DELETE FROM Reserva WHERE id_reserva = ${identificador}");
-            if($resultado) {
-                //header('location: /index.php');
-            }
-        }*/
+           
         $router->render('reservacion/eliminar',[
             'llamado' => $llamado
         ]);
     }
-    
+
+    public static function totem(Router $router)
+    {
+        $errores = IngresoTotem::getValidaciontotem();
+        
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $ingresototem = new IngresoTotem($_POST);
+            $errores = $ingresototem->validartotem();
+
+
+            if (empty($errores)){
+                $ingresototem->inserciontotem();
+                
+            }  
+           
+        }
+        $router->render2('menu/totem',[
+            'errores' => $errores,
+            'ingresototem' => $ingresototem
+        ]);
+    }
 }

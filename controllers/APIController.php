@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Model\Productos;
 use Model\Carrito;
+use Model\Pago;
 
 class APIController {
     public static function index()
@@ -11,6 +12,16 @@ class APIController {
         $productos = Productos::all();
 
         echo json_encode($productos);
+    }
+    public static function pago()
+    {
+        $pago = Pago::all();
+
+        $respuesta = [
+            'pago' => $pago
+        ];
+
+        echo json_encode($pago);
     }
     public static function ordenar()
     {

@@ -12,9 +12,9 @@ class MenuController {
             'mensaje' => 'Desde el menu'
         ]);
     }
-    public static function estadoorden (Router $router)
+    public static function finalizarcompra (Router $router)
     {
-        $router->render('pago/estadoorden',[
+        $router->render('pago/finalizarcompra',[
             'mensaje' => 'Desde estadoorden'
         ]);
     }
@@ -30,21 +30,4 @@ class MenuController {
             'mensaje' => 'Desde ingresoexitoso'
         ]);
     }
-    public static function totem (Router $router)
-    {
-        $ingresoTotem = new IngresoTotem;
-
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $rut= $_POST['rut'];
-        
-            $ingreso = $ingresoTotem->inserciontotem($rut);
-            
-            
-        }
-        $router->render2('menu/totem',[
-            'ingresototem' => $ingresoTotem,
-            'ingreso' => $ingreso
-        ]);
-    }
-
 }

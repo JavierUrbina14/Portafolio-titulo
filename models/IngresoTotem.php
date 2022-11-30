@@ -5,27 +5,42 @@ namespace Model;
 class IngresoTotem extends ActiveRecord{
 
     //base de datos
+    protected static $errores = [];
 
-
-    public $id_invitado;
-    public $rut_invitado;
-    public $fecha_ingreso;
+    public $rut;
+    public $correo;
 
     public function __construct($args = [])
     {
-        $this->id_invitado = $args['id_invitado'] ?? null;
-        $this->rut_invitado = $args['rut_invitado'] ?? '';
-        $this->fecha_ingreso = $args['fecha_ingreso'] ?? '';
+        $this->rut = $args['rut'] ?? '';
+        $this->correo = $args['correo'] ?? '';
     }
 
-    public function inserciontotem($rutificador)
+    public function inserciontotem()
     {
-        $inyecciontotem = "call SP_reservacionTotem('$rutificador');";
+        $inyecciontotem = "call SP_reservacionTotem('$this->rut','$this->correo');";
         $resultado = self::$db->query($inyecciontotem);
-        if($resultado) {
+        if($resultado){
             header('location: /ingresoexitoso');
         }
+        
 
+    }
+
+    public static function getValidaciontotem()
+    {
+        return self::$errores;
+    }
+
+    public function validartotem()
+    {
+        if (!$this->rut){
+            self::$errores[] = "¡Debes ingresar tu rut!";
+        }
+        if (!$this->correo){
+            self::$errores[] = "¡Debes ingresar tu correo electronico!";
+        }
+        return self::$errores;
     }
 
 
