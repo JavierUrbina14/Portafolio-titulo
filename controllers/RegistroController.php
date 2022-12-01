@@ -86,4 +86,10 @@ class RegistroController{
             'ingresototem' => $ingresototem
         ]);
     }
+    public static function pagado(Router $router){
+        $router->render2('pago/pagado');
+    }
+    public static function pagadoefectivo(Router $router){
+        $router->render2('pago/pagoefectivo');
+    }
 }

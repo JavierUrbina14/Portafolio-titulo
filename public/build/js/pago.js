@@ -66,8 +66,17 @@ const mostrarFooter = data => {
     FooterFP.appendChild(fragment)
     paypalpago(nPrecio)
 }
+const btnpagoefectivo = document.querySelector('.btn-pago-efectivo')
+btnpagoefectivo.onclick = pagoconefectivo
+
+function pagoconefectivo() {
+  location.href = ('/pagado')
+}
+
 
 const paypalpago = nPrecio => {
+  
+
     paypal.Buttons({
         // Sets up the transaction when a payment button is clicked
         createOrder: (data, actions) => {
@@ -81,11 +90,22 @@ const paypalpago = nPrecio => {
         },
         // Finalize the transaction after payer approval
         onApprove: (data, actions) => {
-          return actions.order.capture().then(function(orderData) {
+          return actions.order.capture().then(async function(orderData) {
             // Successful capture! For dev/demo purposes:
-            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
             const transaction = orderData.purchase_units[0].payments.captures[0];
-            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            const venta = new FormData()
+            venta.append('clavetransaccion',transaction.id)
+            venta.append('total_newventa',nPrecio)
+            venta.append('estado_newventa',transaction.status)
+            //alert(`Transaction ${transaction.status}: ${transaction.id} \n\nSee console for all available details`);
+            const url = 'http://localhost:3000/api/pagopaypal'
+            const respuesta = await fetch(url, {
+            method: 'POST',
+            body: venta
+            })
+            const resultado = await respuesta.json();
+            actions.redirect('http://localhost:3000/pagado');
             // When ready to go live, remove the alert and show a success message within this page. For example:
             // const element = document.getElementById('paypal-button-container');
             // element.innerHTML = '<h3>Thank you for your payment!</h3>';

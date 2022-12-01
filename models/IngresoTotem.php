@@ -38,7 +38,7 @@ class IngresoTotem extends ActiveRecord{
             self::$errores[] = "¡Debes ingresar tu rut!";
         }
         if (!$this->correo){
-            self::$errores[] = "¡Debes ingresar tu correo electronico!";
+            self::$errores[] = "¡Tu correo electronico es necesario para emitir tu boleta!";
         }
         return self::$errores;
     }

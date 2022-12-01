@@ -22,4 +22,17 @@ class Mesa extends ActiveRecord{
         $resultado = self::consultarDB($query);
         return $resultado;
     }
+    public static function traermesastotem()
+    {
+        $query = 'SELECT numero_mesa
+        from reserva
+        inner join mesa
+        on mesa_id = mesa.id_mesa
+        ORDER BY id_reserva DESC LIMIT 1';
+        $resultado = self::consultarDB($query);
+        
+        return $resultado;
+        
+    }
+    
 }

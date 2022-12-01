@@ -4,6 +4,7 @@ namespace Controllers;
 
 use MVC\Router;
 use Model\IngresoTotem;
+use Model\Mesa;
 
 class MenuController {
     public static function index (Router $router)
@@ -26,8 +27,11 @@ class MenuController {
     }
     public static function ingresoexitoso (Router $router)
     {
+        $mesaobtenida = Mesa::traermesastotem();
+       
+
         $router->render2('menu/ingresoexitoso',[
-            'mensaje' => 'Desde ingresoexitoso'
+            'mesaobtenida' => $mesaobtenida
         ]);
     }
 }

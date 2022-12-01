@@ -5,6 +5,7 @@ namespace Controllers;
 use Model\Productos;
 use Model\Carrito;
 use Model\Pago;
+use Model\Pagopaypal;
 
 class APIController {
     public static function index()
@@ -31,6 +32,12 @@ class APIController {
         /*$respuesta = [
             'hola' => $carrito
         ];*/
+        echo json_encode($respuesta);
+    }
+    public static function pagopaypal()
+    {
+        $pagopaypal = new Pagopaypal($_POST);
+        $respuesta = $pagopaypal->insercionpaypal();
         echo json_encode($respuesta);
     }
 }

@@ -19,6 +19,8 @@ $router->get('/reservacion/eliminar', [RegistroController::class, 'seleccionar']
 $router->post('/reservacion/eliminar', [RegistroController::class, 'eliminar']);
 $router->get('/ingreso', [RegistroController::class, 'totem']);
 $router->post('/ingreso', [RegistroController::class, 'totem']);
+$router->get('/pagado', [RegistroController::class, 'pagado']);
+$router->get('/pagadoefectivo', [RegistroController::class, 'pagadoefectivo']);
 
 
 //Menu
@@ -31,5 +33,6 @@ $router->get('/pago', [MenuController::class, 'finalizarcompra']);
 $router->get('/api/productos',[APIController::class, 'index']);
 $router->post('/api/orden',[APIController::class, 'ordenar']);
 $router->get('/api/pago',[APIController::class, 'pago']);
+$router->post('/api/pagopaypal',[APIController::class, 'pagopaypal']);
 
 $router->comprobarRutas();
