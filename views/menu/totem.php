@@ -7,28 +7,34 @@
     <link rel="stylesheet" href="build/css/app.css">
     <title>Totem</title>
 </head>
-<body class="backgrnd">
-<?php foreach($errores as $error): ?>
-    <div class="alerta error">
+<body class='body-totem'>
+    <main>
+
+    <?php foreach($errores as $error): ?>
+    <div class="alerta-totem">
         <?php echo $error; ?>
     </div>
     <?php  endforeach; ?>
     
     
-    <div class="totem">
+   
     
     
         
     <div class='contenedor-totem'>
         
         <form class="formulario-totem" method="POST" action="">
-        <fieldset>
+        <fieldset class='sombra'>
             <legend>¡Bienvenido!</legend>
             <div class="contenedor-campos">
 
                 <div class="campo-totem">
+                    <div>
                     <input class='input-totem' type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT" value='<?php echo $ingresototem->rut ?>'>
+                    </div>
+                    <div>
                     <input class="input-totem" type="email" name="correo" placeholder='Ingrese Correo' value='<?php echo $ingresototem->correo ?>'>
+                    </div>
                     <script src="build/js/validarRUT.js"></script>
                 </div>
             </div>
@@ -38,6 +44,7 @@
         </fieldset>
     </form>
     </div>
-    </div>
+ 
+    </main>
 </body>
 </html>

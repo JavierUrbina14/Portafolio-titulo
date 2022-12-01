@@ -3,42 +3,53 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AQ-LTaUYx94pTsJuVjJOlVlPR4hSeEzAzOKEp4NyGh4XKbqMw-ya4Pw2QS7DWqiA_8JerpYp5BIBTWqx&currency=USD"></script>
 
     
-
-    <div class="contenedor">
-      <h1>Finalizar compra</h1>
+  <h1 class='titulo-finalizarpago'>Finalizar compra</h1>
+    <div class="contenedor-pago">
+      
+      <div class="informacion-total-pago">
+      
       <table class="infoFP">
             <thead id='headFP'>
                 <tr>
-                <th>Nombre Producto</th>
-                <th>Precio unitario</th>
-                <th>Cantidad</th>
-                <th>Cliente</th>
-                <th>Total</th>
+                <th class='th-Nombre'>Nombre Producto</th>
+
+                <th class='th-Precio'>Precio unitario</th>
+                <th class='th-Cantidad'>Cantidad</th>
+                <th class='th-Cliente'>Cliente</th>
+                <th class='th-Total'>Total</th>
             </tr>
         </thead>
         <tbody id="contenidoFP"></tbody>
-        <tfoot>
+        <tfoot class='footerContenido'>
           <tr id="footerContenido">
             
           </tr>
         </tfoot>
             
       </table>
-      <div id="paypal-button-container"></div>
+      </div>
+      <div id="paypal-button-container">
+        <h1>Seleccione el metodo de pago</h1>
+        <button class='btn-pago-efectivo'>Pagar con efectivo</button>
+      </div>
+      
+ 
     </div>
 
     <template id='cardFP'>
         <tr>
             <td id='productoFP'></td>
             <td id='precioFP'></td>
-            <td id='cantidadFP'></td>
+            <td id='cantidadFP' class='contenidoFPcentro'></td>
             <td id='clienteFP'></td>
-            <td id='totalFP'></td>
+            <td id='totalFP' class='contenidoFPcentro'></td>
         </tr>
     </template>
 
     <template id="footerFinalizarPago">
-            <th scope="row" colspan="2">Total a pagar</th>
+            <th></th>
+            <th></th>
+            <th class='footerFinalizarPago'scope="row" colspan="2">Total a pagar</th>
             
             <td>$ <span>5000</span></td>
         </template>

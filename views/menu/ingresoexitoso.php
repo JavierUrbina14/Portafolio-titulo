@@ -9,9 +9,22 @@
     <link rel="stylesheet" href="build/css/app.css">
 </head>
 <body class="ingresoexbody">
-    <div class="imgconfirmacioning">
+    <div class="text-ingresoex-contenedor sombra">
         
-        <h2>¡Disfrute de su estadía con nosotros!</h2>
+        <h1 class='text-ingresoex'>¡Disfrute de su estadía con nosotros!</h1>
+        <?php foreach ($mesaobtenida as $mesa) :?>
+        <h1 class='text-ingresoex'>Su mesa es la numero: <span><?php echo $mesa->numero_mesa ?></span>  </h1>
+        <?php endforeach;?>
+
     </div>
+    <script>
+
+                function r(){
+                    location.href= "/ingreso"
+                }
+                setTimeout("r()",7000);
+
+
+            </script>
 </body>
 </html>

@@ -33,14 +33,19 @@
                 <button class="btn btn-danger btn-sm" id="vaciar-carrito">
                     vaciar todo
                 </button>
+                
             </td>
+            
             
             <td class="font-weight-bold">$ <span>5000</span></td>
             <td>
-                <button class="btn btn-danger btn-sm" id="ordenarCompra">
+                
+            </td>
+            <tr>
+            <button class="btn btn-danger btn-sm" id="ordenarCompra">
                     ordenar compra
                 </button>
-            </td>
+            </tr>
         </template>
         
         <template id="template-carrito">

@@ -42,6 +42,14 @@
         <p class="footer__texto">Restaurant Siglo XXI - Todos los derechos reservados 2022.</p>
     </footer>
     </body>
+    <script>
+        const btnlinkMenu = document.querySelector('#linkMenu')
+        btnlinkMenu.onclick = linkMenu
+
+        function linkMenu() {
+        localStorage.removeItem('carrito');
+        }
+    </script>
 </html>
 
     
