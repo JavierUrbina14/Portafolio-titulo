@@ -27,6 +27,7 @@ drop table if exists registrocajero;
 drop table if exists Tipousuario;
 drop table if exists Invitados;
 drop table if exists Recetas;
+drop table if exists newventa;
 
 
 
@@ -97,7 +98,7 @@ tipoproducto_id int not null
 create table Tipoproducto (
 id_tipoproducto int not null auto_increment primary key,
 nombre_tipoproducto varchar(50) not null,
-estado_tipoprdoucto boolean
+estado_tipoproducto boolean
 );
 
 create table Detalleventas (
@@ -108,13 +109,11 @@ ventas_id int not null
 
 create table Ventas (
 id_ventas int not null auto_increment primary key,
-clientes_id int not null,
-tipopago_id int,
-fecha_venta datetime,
-valor_neto int,
-iva_ventas int,
-total_pagar int,
-estado_pago_ventas boolean
+clavetransaccion varchar(250) not null,
+fecha_newventa datetime,
+total_newventa int,
+estado_newventa varchar(200),
+tipopago varchar(50)
 );
 
 create table Tipopago(
@@ -206,6 +205,14 @@ fecha_apertura datetime,
 fecha_cierre datetime
 );
 
+create table newventa (
+id_newventa int not null primary key auto_increment,
+clavetransaccion varchar(250) not null,
+fecha_newventa datetime,
+total_newventa int,
+estado_newventa varchar(200)
+);
+
 -- ALTERAR TABLAS PARA AGREGAR LLAVES FORANEAS
 ALTER TABLE ordencompra ADD FOREIGN KEY(proveedor_id) REFERENCES proveedor(id_proveedor);
 ALTER TABLE ordencompra ADD FOREIGN KEY(detallecompra_id) REFERENCES detallecompra(id_detallecompra);
@@ -215,8 +222,6 @@ ALTER TABLE productoscocina ADD FOREIGN KEY(panelcocina_id) REFERENCES panelcoci
 ALTER TABLE producto ADD FOREIGN KEY(tipoproducto_id) REFERENCES tipoproducto(id_tipoproducto);
 ALTER TABLE detalleventas ADD FOREIGN KEY(ventas_id) REFERENCES ventas(id_ventas);
 ALTER TABLE detalleventas ADD FOREIGN KEY(panelcocina_id) REFERENCES panelcocina(id_panelcocina);
-ALTER TABLE ventas ADD FOREIGN KEY(clientes_id) REFERENCES clientes(id_clientes);
-ALTER TABLE ventas ADD FOREIGN KEY(tipopago_id) REFERENCES tipopago(id_tipopago);
 ALTER TABLE egresos ADD FOREIGN KEY(gastos_id) REFERENCES gastos(id_gastos);
 ALTER TABLE reserva ADD FOREIGN KEY(clientes_id) REFERENCES clientes(id_clientes);
 ALTER TABLE reserva ADD FOREIGN KEY(mesa_id) REFERENCES mesa(id_mesa);
@@ -268,21 +273,18 @@ insert into tipopago (tipo_pago_usado) values ("Debito");
 insert into tipopago (tipo_pago_usado) values ("Credito");
 insert into tipopago (tipo_pago_usado) values ("Efectivo");
 
-insert into ventas (clientes_id, tipopago_id, fecha_venta, valor_neto, iva_ventas, total_pagar, estado_pago_ventas) values (2,3,curdate(),24292,5698,29990,true);
-insert into ventas (clientes_id, tipopago_id, fecha_venta, valor_neto, iva_ventas, total_pagar, estado_pago_ventas) values (1,3,curdate(),10522,2468,12990,true);
-insert into ventas (clientes_id, tipopago_id, fecha_venta, valor_neto, iva_ventas, total_pagar, estado_pago_ventas) values (3,2,curdate(),69093,16207,85300,true);
 
 insert into egresos (ventas_id, gastos_id, fecha_egreso, cantidad_egreso, observaciones_egreso) values (1,3,now(),70000,"Se ha emitido una boleta para el presunto pago de 3 galones de gas de 45kg a la fecha del dia de hoy");
 
-insert into tipoproducto (nombre_tipoproducto) values ("Especialidades");
-insert into tipoproducto (nombre_tipoproducto) values ("Agregados");
-insert into tipoproducto (nombre_tipoproducto) values ("Ensaladas");
-insert into tipoproducto (nombre_tipoproducto) values ("Delicias del pueblo");
-insert into tipoproducto (nombre_tipoproducto) values ("Postres caseros y otros");
-insert into tipoproducto (nombre_tipoproducto) values ("Aperitivos");
-insert into tipoproducto (nombre_tipoproducto) values ("Tragos");
-insert into tipoproducto (nombre_tipoproducto) values ("Bajativos");
-insert into tipoproducto (nombre_tipoproducto) values ("Vinos");
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Especialidades",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Agregados",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Ensaladas",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Delicias del pueblo",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Postres caseros y otros",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Aperitivos",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Tragos",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Bajativos",true);
+insert into tipoproducto (nombre_tipoproducto,estado_tipoproducto) values ("Vinos",true);
 
 insert into producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) values ("Empanadas de horno",1990,'https://locales.unimarc.cl/wp-content/files_mf/1662763905800x800EMPANADASDEPINOALHORNO.jpg',true,1); #Especialidades
 insert into producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) values ("Lomo liso vacuno a lo pobre",12980,'https://nosepreocupenporcocinar.files.wordpress.com/2014/09/a-uno-388808.jpeg?w=640',true,1);
@@ -343,6 +345,8 @@ insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol
 insert into detallecompra (insumos_id, cantidad_detallecompra, fecha_hora_ordencompra) values (1,"170kg",curdate());
 insert into detallecompra (insumos_id, cantidad_detallecompra, fecha_hora_ordencompra) values (2,"160kg",curdate());
 
+insert into newventa (clavetransaccion,fecha_newventa,total_newventa,estado_newventa) values ('123456798',now(),'30000','COMPLETED');
+
 insert into ordencompra (detallecompra_id, proveedor_id ,subtotal_ordencompra) values (1,1,150000);
 insert into ordencompra (detallecompra_id, proveedor_id ,subtotal_ordencompra) values (2,1,145000);
 /*
@@ -394,13 +398,38 @@ on clientes_id = clientes.id_clientes
 inner join mesa
 on mesa_id = mesa.id_mesa;
 
+/*
+	*** DISPARADORES ***
+*/
+
+drop trigger if exists insercion_panel_cocina;
+create trigger insercion_panel_cocina
+after insert
+on carrito
+for each row insert into panelcocina (estado_cocina, estado_garzon, carrito_id) values (false,false,NEW.id_carrito);
+
+
+drop trigger if exists deleteo_panelcocina;
+create trigger deleteo_panelcocina
+after insert
+on ventas
+for each row 
+delete from panelcocina;
+
+drop trigger if exists deleteo_carrito;
+create trigger deleteo_carrito
+after insert
+on ventas
+for each row 
+delete from carrito;
+
 /* 
 	***CREACION DE PROCEDIMIENTOS ALMACENADOS*** 
 */
 
 
 /* 
-	*** MODULO WEB ***
+	*** MODULO WEB *** 
  */
 delimiter //
 drop procedure if exists SP_reservacion //
