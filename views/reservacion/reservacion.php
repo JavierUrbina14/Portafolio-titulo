@@ -46,7 +46,7 @@
                         </div>
                         <div class="campo">
                             <label>Rut</label>
-                            <input class='input-text' type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT"  value='<?php echo $registro->rut;?>'>
+                            <input class='input-text' type="text" id="rut" name="rut"  oninput="checkRut(this)" placeholder="Ingrese RUT"  value='<?php echo $registro->rut;?>'>
                             <script src="build/js/validarRUT.js"></script>
                         </div>
                         <div class="campo">

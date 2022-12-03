@@ -30,7 +30,7 @@
 
                 <div class="campo-totem">
                     <div>
-                    <input class='input-totem' type="text" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT" value='<?php echo $ingresototem->rut ?>'>
+                    <input class='input-totem' type="text" id="rut" name="rut"  oninput="checkRut(this)" placeholder="Ingrese RUT" value='<?php echo $ingresototem->rut ?>'>
                     </div>
                     <div>
                     <input class="input-totem" type="email" name="correo" placeholder='Ingrese Correo' value='<?php echo $ingresototem->correo ?>'>

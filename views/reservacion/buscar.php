@@ -3,7 +3,7 @@
     <h1>Información antes de cancelar tu reserva</h1><br>
     <h3>* Debes tener una reserva pendiente para cancelar una reserva</h3><br>
     <h3>* Una vez cancelada tu reserva no podrás volver a reservar para la misma fecha</h3><br>
-    <h3>* Igualmente puedes <a href="reservacion.php">agendar</a> otra reserva en nuestro restaurante
+    <h3>* Igualmente puedes <a href="/reservacion">agendar</a> otra reserva en nuestro restaurante
     </h3>
 
 </div>

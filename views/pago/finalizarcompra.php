@@ -12,9 +12,9 @@
             <thead id='headFP'>
                 <tr>
                 <th class='th-Nombre'>Nombre Producto</th>
-
                 <th class='th-Precio'>Precio unitario</th>
                 <th class='th-Cantidad'>Cantidad</th>
+                <th class='th-Cantidad'>Mesa</th>
                 <th class='th-Cliente'>Cliente</th>
                 <th class='th-Total'>Total</th>
             </tr>
@@ -41,6 +41,7 @@
             <td id='productoFP'></td>
             <td id='precioFP'></td>
             <td id='cantidadFP' class='contenidoFPcentro'></td>
+            <td id='mesaFP' class=''></td>
             <td id='clienteFP'></td>
             <td id='totalFP' class='contenidoFPcentro'></td>
         </tr>
