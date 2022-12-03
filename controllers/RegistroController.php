@@ -8,6 +8,9 @@ use Model\Mesa;
 use Model\Eliminar;
 use Model\Reserva;
 use Model\IngresoTotem;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 class RegistroController{
@@ -87,6 +90,11 @@ class RegistroController{
         ]);
     }
     public static function pagado(Router $router){
+
+        //if($_SERVER['REQUEST_METHOD'] === 'GET'){
+            
+        //};
+        
         $router->render2('pago/pagado');
     }
     public static function pagadoefectivo(Router $router){

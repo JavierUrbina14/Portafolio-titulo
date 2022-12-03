@@ -18,7 +18,7 @@ const fetchData = async () => {
         //Convertimos la informacion a json
         const data = await res.json();
         //Llamamos a la función 'alterarformulario' y le pasamos la informacion
-        console.log(data)
+        //console.log(data)
         mostrarCuenta(data)
 
     } catch (error) {
@@ -36,6 +36,7 @@ const mostrarCuenta = data =>{
         templateCardFP.querySelector('#productoFP').textContent=product.producto
         templateCardFP.querySelector('#precioFP').textContent=product.precio_unitario
         templateCardFP.querySelector('#cantidadFP').textContent=product.cantidad
+        templateCardFP.querySelector('#mesaFP').textContent=product.mesa
         templateCardFP.querySelector('#clienteFP').textContent=product.cliente
         templateCardFP.querySelector('#totalFP').textContent=product.total
 
@@ -53,7 +54,7 @@ const mostrarFooter = data => {
     
     FooterFP.innerHTML= ''
     const nPrecio = Object.values(data).reduce((acc,{cantidad, precio_unitario}) => acc + cantidad*precio_unitario,0)
-    console.log('nPrecio: ' + nPrecio)
+    //console.log('nPrecio: ' + nPrecio)
     
     
     templateFooterFP.querySelector('span').textContent = nPrecio
@@ -99,13 +100,17 @@ const paypalpago = nPrecio => {
             venta.append('total_newventa',nPrecio)
             venta.append('estado_newventa',transaction.status)
             //alert(`Transaction ${transaction.status}: ${transaction.id} \n\nSee console for all available details`);
+            
             const url = 'http://localhost:3000/api/pagopaypal'
             const respuesta = await fetch(url, {
             method: 'POST',
             body: venta
             })
+            
             const resultado = await respuesta.json();
-            actions.redirect('http://localhost:3000/pagado');
+            await actions.redirect('http://localhost:3000/pagado');
+            
+            
             // When ready to go live, remove the alert and show a success message within this page. For example:
             // const element = document.getElementById('paypal-button-container');
             // element.innerHTML = '<h3>Thank you for your payment!</h3>';
@@ -113,5 +118,7 @@ const paypalpago = nPrecio => {
           });
         }
       }).render('#paypal-button-container');
+
+      location.href('/pagado')
 }
 

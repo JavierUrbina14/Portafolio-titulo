@@ -618,11 +618,11 @@ hr {
 }
 
 .formulario__btnsubmenu {
-  background-color: #b2c0bf;
+  background-color: #4dd0e1;
   border-color: black;
   border-radius: 1rem;
   font-size: 2rem;
-  font-size: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 1rem;
   padding-left: 10.2rem;
   padding-right: 10rem;
@@ -877,6 +877,7 @@ hr {
 .infoPE {
   margin: 0 auto;
   text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 
 .infoPE th, td {
