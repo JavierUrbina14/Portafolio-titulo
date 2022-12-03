@@ -27,7 +27,7 @@ drop table if exists registrocajero;
 drop table if exists Tipousuario;
 drop table if exists Invitados;
 drop table if exists Recetas;
-drop table if exists newventa;
+
 
 
 
@@ -103,7 +103,6 @@ estado_tipoproducto boolean
 
 create table Detalleventas (
 id_detalleventas int not null auto_increment primary key,
-panelcocina_id int not null,
 ventas_id int not null
 );
 
@@ -205,13 +204,9 @@ fecha_apertura datetime,
 fecha_cierre datetime
 );
 
-create table newventa (
-id_newventa int not null primary key auto_increment,
-clavetransaccion varchar(250) not null,
-fecha_newventa datetime,
-total_newventa int,
-estado_newventa varchar(200)
-);
+
+
+
 
 -- ALTERAR TABLAS PARA AGREGAR LLAVES FORANEAS
 ALTER TABLE ordencompra ADD FOREIGN KEY(proveedor_id) REFERENCES proveedor(id_proveedor);
@@ -221,7 +216,6 @@ ALTER TABLE productoscocina ADD FOREIGN KEY(insumos_id) REFERENCES insumos(id_in
 ALTER TABLE productoscocina ADD FOREIGN KEY(panelcocina_id) REFERENCES panelcocina(id_panelcocina);
 ALTER TABLE producto ADD FOREIGN KEY(tipoproducto_id) REFERENCES tipoproducto(id_tipoproducto);
 ALTER TABLE detalleventas ADD FOREIGN KEY(ventas_id) REFERENCES ventas(id_ventas);
-ALTER TABLE detalleventas ADD FOREIGN KEY(panelcocina_id) REFERENCES panelcocina(id_panelcocina);
 ALTER TABLE egresos ADD FOREIGN KEY(gastos_id) REFERENCES gastos(id_gastos);
 ALTER TABLE reserva ADD FOREIGN KEY(clientes_id) REFERENCES clientes(id_clientes);
 ALTER TABLE reserva ADD FOREIGN KEY(mesa_id) REFERENCES mesa(id_mesa);
@@ -244,8 +238,8 @@ insert into gastos (nombre_gasto) values ("Materia prima");
 insert into gastos (nombre_gasto) values ("Equipamiento");
 insert into gastos (nombre_gasto) values ("Mobiliario");
 
-insert into Mesa (numero_mesa, mesa_disponible) values (01,true);
-insert into Mesa (numero_mesa, mesa_disponible) values (02,true);
+insert into Mesa (numero_mesa, mesa_disponible) values (01,false);
+insert into Mesa (numero_mesa, mesa_disponible) values (02,false);
 insert into Mesa (numero_mesa, mesa_disponible) values (03,true);
 insert into Mesa (numero_mesa, mesa_disponible) values (04,true);
 insert into Mesa (numero_mesa, mesa_disponible) values (05,true);
@@ -345,7 +339,6 @@ insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol
 insert into detallecompra (insumos_id, cantidad_detallecompra, fecha_hora_ordencompra) values (1,"170kg",curdate());
 insert into detallecompra (insumos_id, cantidad_detallecompra, fecha_hora_ordencompra) values (2,"160kg",curdate());
 
-insert into newventa (clavetransaccion,fecha_newventa,total_newventa,estado_newventa) values ('123456798',now(),'30000','COMPLETED');
 
 insert into ordencompra (detallecompra_id, proveedor_id ,subtotal_ordencompra) values (1,1,150000);
 insert into ordencompra (detallecompra_id, proveedor_id ,subtotal_ordencompra) values (2,1,145000);
