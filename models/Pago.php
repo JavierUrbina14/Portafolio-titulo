@@ -21,4 +21,5 @@ class Pago extends ActiveRecord{
         $this->cliente = $args['cliente'] ?? '';
         $this->total = $args['total'] ?? '';
     }
+    
 }

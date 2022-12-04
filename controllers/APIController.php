@@ -26,6 +26,9 @@ class APIController {
         ];
 
         echo json_encode($pago);
+
+        
+
     }
     public static function ordenar()
     {
@@ -40,7 +43,18 @@ class APIController {
     public static function pagopaypal()
     {
         $mail = new PHPMailer();
+        $pagopaypal = new Pagopaypal($_POST);
+        $pago = Pago::all();
+        foreach ($pago as $llave){
+            $cliente = $llave->cliente;
+            $producto = $llave->producto;
+            $precio = $llave->total;
+            $cantidad = $llave->cantidad;
 
+            $contenidorecibo .= '<p style="margin-top: 0; margin-bottom: 10px;  font-size: 18px; padding: 10px; color: #F5B647">' .$cantidad. ' x '.$producto.' = $' .$precio. '</p>';
+        }
+
+        
         //configuracion email
         $mail->isSMTP();
         $mail->Host = 'smtp.mailtrap.io'; //Set the SMTP server to send through
@@ -145,9 +159,11 @@ class APIController {
                                 <tr>
                                     <td style="padding: 35px 0px 11px 30px; font-size: 0; background-color: #146356; border-bottom: 1px solid #f0f0f5; border-color: rgba(201,201,207,.35);">
                                         <div class="col-lge" style="display: inline-block; width: 100%; max-width: 395px; vertical-align: top; padding-bottom: 10px; font-family: Arial,sans-serif; font-size: 16px; line-height: 22px; color: #363636;">
-                                            <p style="margin-top: 0; margin-bottom: 5px;  font-size: 18px; padding: 10px; color: #F5B647">Gracias por preferirnos, {Cliente}</p>
+                                            <p style="margin-top: 0; margin-bottom: 5px;  font-size: 18px; padding: 10px; color: #F5B647">Gracias por preferirnos, '. $cliente . '.</p>
                                             <p style="margin-top: 0; margin-bottom: 10px;  font-size: 18px; padding: 10px; color: #F5B647">Hemos adjuntado el recibo de tu compra en Restaurant SigloXXI.</p>
                                         </div>
+                                        <div><p style="margin-top: 0; margin-bottom: 10px; font-size: 18px; padding: 10px; color: #f0f0f5">-------------------------------------------------</p></div>
+                                        <div>' .$contenidorecibo.' </div>
                                         <!--[if mso]>
                                         </td>
                                         </tr>
@@ -159,7 +175,7 @@ class APIController {
                                     <td style="padding: 30px; font-size: 24px; line-height: 28px; font-weight: bold; background-color: #146356; border-bottom: 1px solid #f0f0f5; border-color: rgba(201,201,207,.35); color: #F5B647;  border-bottom-left-radius:20px; border-bottom-right-radius:20px">
                                         <div class="parrafos">
                                             <p  style="margin: 0px 0px 0px 30px; ;">Total:</p>
-                                            <p class="pf-Monto" style="margin: 0px 0px 0px 30px; ;">$ {Monto}</p>
+                                            <p class="pf-Monto" style="margin: 0px 0px 0px 30px; ;"> $' . $pagopaypal->total_newventa .'</p>
                                         </div>
                                         
                                     </td>
@@ -211,7 +227,7 @@ class APIController {
 
         $mail->send();
 
-        $pagopaypal = new Pagopaypal($_POST);
+        
         
         $respuesta = $pagopaypal->insercionpaypal();
         
