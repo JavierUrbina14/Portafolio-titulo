@@ -27,10 +27,11 @@
                 <a href="/"><img src="build/img/Logotipo_login_Siglo_XXI_2.png" alt=""></a>
                 
                 
+                
             </div>
             <nav class="navegacion-principal contenedor"> <!--Menu de navegación-->
                 <a id="linkReservacion" href="/reservacion">Reservación</a>
-                <a id="linkMenu" target="_blank" href="/menu">Menú</a>
+                <a id="linkMenu" href="/menu">Menú</a>
             </nav><!--Fin menu de navegación-->
         
 

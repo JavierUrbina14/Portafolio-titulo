@@ -20,6 +20,7 @@
             <td>Cliente</td>
             <td>Rut del cliente</td>
             <td>Telefono</td>
+            <td>Mesa</td>
             <td>Correo</td>
             <td>Hora de la reserva</td>
         </tr>
@@ -28,6 +29,7 @@
             <td><?php echo $key->Cliente ?></td>
             <td><?php echo $key->rut_cliente ?></td>
             <td><?php echo $key->telefono_cliente ?></td>
+            <td><?php echo $key->numero_mesa ?></td>
             <td><?php echo $key->correo_cliente ?></td>
             <td><?php echo $key->fecha_hora_reserva ?></td>
             <td>
@@ -39,4 +41,23 @@
         </tr>
         <?php endforeach ?>
     </table>
-    <?php incluirTemplates('footer'); ?>
+    <script>
+        const btnformulario = document.querySelector('.elimination-btn');
+        btnformulario.onclick = mostraralerta;
+
+        function mostraralerta () {
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Se ha eliminado la reserva',
+            showConfirmButton: false,
+            timer: 1500,
+            width: '40%',
+            padding: '5rem'
+            
+        })
+        
+        }
+                
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

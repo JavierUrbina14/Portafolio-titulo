@@ -83,5 +83,23 @@
             </form>
       </div>
     </main>
+    <script>
+        const btnformulario = document.querySelector('.formulario__submit');
+        btnformulario.onclick = mostraralerta;
 
-<?php include 'includes/templates/footer.php'; ?>
+        function mostraralerta () {
+            Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Se ha creado la reserva',
+            showConfirmButton: false,
+            timer: 1500,
+            width: '40%',
+            padding: '5rem'
+            
+        })
+        
+        }
+                
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

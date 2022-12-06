@@ -28,9 +28,9 @@
             
       </table>
       </div>
-      <div id="paypal-button-container">
-        <h1>Seleccione el metodo de pago</h1>
-        <button class='btn-pago-efectivo'>Pagar con efectivo</button>
+      <div id="paypal-button-container" class='seccion-pago'>
+        <h1>Seleccionar metodo de pago</h1>
+        <p>En caso de pagar con efectivo, favor acercarse a la caja</p>
       </div>
       
  

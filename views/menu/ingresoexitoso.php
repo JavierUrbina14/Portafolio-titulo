@@ -20,7 +20,7 @@
     <script>
 
                 function r(){
-                    location.href= "/ingreso"
+                    location.href= "/"
                 }
                 setTimeout("r()",7000);
 
