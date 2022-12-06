@@ -867,7 +867,7 @@ hr {
 
 .contenedorPE {
   text-align: center;
-  margin: 10rem 10rem 12.1rem 10rem;
+  margin: 10rem 10rem 30.1rem 10rem;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -921,7 +921,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5rem 0 10rem 0;
+  margin: 5rem 0 28rem 0;
 }
 
 .titulo-finalizarpago {
@@ -930,6 +930,7 @@ hr {
 
 .infoFP {
   font-size: 2rem;
+  font-family: "Roboto", sans-serif;
 }
 
 .td-Cantidad {
@@ -947,19 +948,9 @@ hr {
   text-align: center;
 }
 
-.btn-pago-efectivo {
-  width: 100%;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  background-color: #48c238;
-  border: none;
-  border-radius: 0.4rem;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.btn-pago-efectivo:hover {
-  cursor: pointer;
-  background-color: #41ad32;
+.seccion-pago {
+  width: 30%;
+  font-family: "Roboto", sans-serif;
 }
 
 .img-wallet {
@@ -973,4 +964,15 @@ hr {
 
 .text-contenido-pagado {
   font-family: "Satisfy", cursive;
+}
+
+@media (max-width: 768px) {
+  .contenedor-pago {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .seccion-pago {
+    width: 100%;
+  }
 }

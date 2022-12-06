@@ -32,7 +32,8 @@ class RegistroController{
 
             if (empty($errores)){
                 $registro->insercion();
-                header('Location: /index.php');
+                sleep(2);
+                header('Location: /');
             }           
         }
         
@@ -58,8 +59,8 @@ class RegistroController{
             $identificador = $_POST['idreserva'];
             if($identificador){
                 $busqueda = Reserva::find($identificador);
+                sleep(2);
                 $busqueda->eliminar();
-                debuguear($busqueda);
             }        
         }
            

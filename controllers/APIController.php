@@ -57,12 +57,12 @@ class APIController {
         
         //configuracion email
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io'; //Set the SMTP server to send through
+        $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
         $mail->SMTPAuth = true;
-        $mail->Username = 'a4aef5475025a0';
-        $mail->Password = '1695277088315a';
+        $mail->Username = 'RecibosSigloXXI@gmail.com';
+        $mail->Password = 'fqavycnnbzrhivih';
         $mail->SMTPSecure = 'tls';
-        $mail->Port = 2525;
+        $mail->Port = 587;
         
         //configurar el Contenido Email
         $mail->setFrom('RecibosSigloXXI@gmail.com');
@@ -191,6 +191,8 @@ class APIController {
                                         <p style="font-size: 16px; color: black; font-style: oblique;">
                                             Encontraras toda la información sobre el proceso de reserva visitando nuestra página web: www.RestaurantSigloXXI/Reservas.cl"
                                         </p>
+                                        <p style="font-size: 16px; color: black; font-style: oblique;">
+                                            Codigo de transaccion: '. $pagopaypal->clavetransaccion .'</p>
                                     </td>
                                 </tr>
                                 <tr>

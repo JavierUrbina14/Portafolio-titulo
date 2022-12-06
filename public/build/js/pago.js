@@ -67,12 +67,6 @@ const mostrarFooter = data => {
     FooterFP.appendChild(fragment)
     paypalpago(nPrecio)
 }
-const btnpagoefectivo = document.querySelector('.btn-pago-efectivo')
-btnpagoefectivo.onclick = pagoconefectivo
-
-function pagoconefectivo() {
-  location.href = ('/pagado')
-}
 
 
 const paypalpago = nPrecio => {
