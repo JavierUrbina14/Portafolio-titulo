@@ -254,7 +254,7 @@ insert into Mesa (numero_mesa, mesa_disponible) values (13,true);
 insert into Mesa (numero_mesa, mesa_disponible) values (14,true);
 insert into Mesa (numero_mesa, mesa_disponible) values (15,true);
 
-insert into clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) values ("Javier","Torres","20576204-3","930249980","ja.torresu@duocuc.cl");
+insert into clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) values ("Javier","Torres","20576204-3","930249980","htorres332.jt@gmail.com");
 insert into clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) values ("Jorge","Munoz","20532131-4","934199027","jorl.munoz@duocuc.cl");
 insert into clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) values ("Matias","Sepulveda","20420624-4","965322154","m.sepulveda15@gmail.com");
 -- insert into clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) values ("Bernardita","Urbina","7991452-5","971929887","bernarditaurbina.19@gmail.com");
@@ -318,22 +318,24 @@ insert into producto (nombre_producto, precio_producto, imagen_producto, estado_
 insert into producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) values ("Don Matias",10980,'https://tolivmarket-production.s3.sa-east-1.amazonaws.com/products/7c0d4058191e00ec20ba0b45a6e2de8887a33ac19376cc6ece3dc6da035c4501.jpg',true,9);
 insert into producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) values ("Chorrillana",12980,'https://media.cnnchile.com/sites/2/2018/08/chorillana.jpg',true,1);
 
-insert into proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor) values ("760306784","Agrocomercial LTDA","Carnes y productos cárnicos","despacho@agrocomercial.cl");
-insert into proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor) values ("904568241","Gazpacho express","Frutas y verduras","contacto@gazpacho.cl");
+insert into proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor, estado_proveedor) values ("760306784","Agrocomercial LTDA","Carnes y productos cárnicos","despacho@agrocomercial.cl",true);
+insert into proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor, estado_proveedor) values ("904568241","Gazpacho express","Frutas y verduras","contacto@gazpacho.cl",true);
 
-insert into categoriainsumos (categoria) values ("Carnes");
-insert into categoriainsumos (categoria) values ("Verduras");
-insert into categoriainsumos (categoria) values ("Frutas");
-insert into categoriainsumos (categoria) values ("Masas");
+insert into categoriainsumos (categoria, estado_categoriainsumo) values ("Carnes", true);
+insert into categoriainsumos (categoria, estado_categoriainsumo) values ("Verduras", true);
+insert into categoriainsumos (categoria, estado_categoriainsumo) values ("Frutas", true);
+insert into categoriainsumos (categoria, estado_categoriainsumo) values ("Masas", true);
 
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Lomo liso","50kg","200kg","1");
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Costillar","20kg","200kg","1");
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Papas","40kg","100kg","2");
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Tomates","80kg","80kg","3");
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Masas de empanadas","50kg","70kg","4");
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values ("Cebollas","30kg","100kg","2");
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Lomo liso","50","200","1",true);
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Costillar","20","200","1",true);
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Papas","40","100","2",true);
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Tomates","80","80","3",true);
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Masas de empanadas","50","70","4",true);
+insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id, estado_insumos) values ("Cebollas","30","100","2",true);
 
-insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario) values ('admin','admin','admin@restaurantxxi.com','Administrador');
+insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario, estado_tipousuario) values ('admin','admin','admin@restaurantxxi.com','Administrador',true);
+insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario, estado_tipousuario) values ('f','f','finanzas@restaurantxxi.com','Finanzas',true);
+insert into tipousuario(nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario, estado_tipousuario) values ('c','c','cocina@restaurantxxi.com','Cocina',true);
 
 
 insert into detallecompra (insumos_id, cantidad_detallecompra, fecha_hora_ordencompra) values (1,"170kg",curdate());
@@ -350,6 +352,7 @@ insert into carrito (producto_id, cantidad_carrito, reserva_id) values ('6','2',
 /* 
 	***CREACION DE VISTAS*** 
 */
+
 drop view if exists informacionfinal;
 create view informacionfinal as
 select nombre_producto as producto,
@@ -461,15 +464,23 @@ create procedure SP_eliminarReserva(
 )
 begin
   declare idEliminacion int;
+  declare numeromesa_update int;
 
-select id_reserva
+select id_reserva,
+id_mesa
 from reserva
 inner join clientes
 on clientes.id_clientes = reserva.clientes_id
+inner join mesa
+on mesa_id = mesa.id_mesa
 where id_reserva = idreserva
-into idEliminacion;
+into idEliminacion, numeromesa_update;
 
+
+update mesa set mesa_disponible = true where id_mesa = numeromesa_update;
 delete from reserva where id_reserva = idEliminacion;
+
+
 end //
 delimiter ;
 
@@ -484,12 +495,16 @@ id_reserva,
 concat(nombre_cliente ,' ',apellido_cliente) as Cliente,
 rut_cliente,
 telefono_cliente,
+numero_mesa,
 correo_cliente,
 fecha_hora_reserva
 from reserva
 inner join clientes
 on clientes.id_clientes = reserva.clientes_id
+inner join mesa
+on mesa_id = mesa.id_mesa
 where rut_cliente = rutcliente;
+
 end //
 delimiter ;
 
@@ -530,17 +545,20 @@ delimiter ;
 */
 
 
+use restaurantxxi;
+
 delimiter //
 drop procedure if exists SP_ActualizarCategoria //
 CREATE PROCEDURE `SP_ActualizarCategoria`(
 in _categoriaAnterior varchar(50),
-in _nombreCategoria varchar(50)
+in _nombreCategoria varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
 SELECT @idCat := id_categoriainsumos from categoriainsumos where categoria = _categoriaAnterior;
 
 UPDATE categoriainsumos
-SET categoria = _nombreCategoria
+SET categoria = _nombreCategoria, estado_categoriainsumo = _estado
 WHERE id_categoriainsumos = @idCat;
 END // 
 delimiter ;
@@ -552,13 +570,14 @@ in _id int,
 in _nombreInsumo varchar(50),
 in _cantidadDisponible varchar(50),
 in _cantidadIdeal varchar(200),
-in _categoria varchar(50)
+in _categoria varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
 SELECT @idCat := id_categoriainsumos from categoriainsumos where categoria = _categoria;
 
 UPDATE insumos
-SET nombre_insumo = _nombreInsumo, cantidad_disponible = _cantidadDisponible, cantidad_ideal = _cantidadIdeal, categoriainsumos_id = @idCat
+SET nombre_insumo = _nombreInsumo, cantidad_disponible = _cantidadDisponible, cantidad_ideal = _cantidadIdeal, estado_insumos = _estado, categoriainsumos_id = @idCat
 WHERE id_insumos = _id;
 END //
 delimiter ;
@@ -572,7 +591,7 @@ in _estado tinyint(1)
 )
 BEGIN
 UPDATE mesa
-SET numero_mesa = _numeroMesa, mesa_disponible = _numeroMesa
+SET numero_mesa = _numeroMesa, mesa_disponible = _estado
 WHERE id_mesa = _id;
 END //
 delimiter ;
@@ -603,11 +622,12 @@ in _id int,
 in _rut varchar(50),
 in _nombre varchar(50),
 in _tipoProveedor varchar(200),
-in _contacto varchar(50)
+in _contacto varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
 UPDATE proveedor
-SET rut_proveedor = _rut, nombre_proveedor = _nombre, tipo_proveedor = _tipoProveedor, contacto_proveedor = _contacto
+SET rut_proveedor = _rut, nombre_proveedor = _nombre, tipo_proveedor = _tipoProveedor, contacto_proveedor = _contacto, estado_proveedor = _estado
 WHERE id_proveedor = _id;
 END //
 delimiter ;
@@ -619,11 +639,12 @@ in _id int,
 in _usuario varchar(50),
 in _contrasenia varchar(50),
 in _correo varchar(200),
-in _rol varchar(50)
+in _rol varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
 UPDATE Tipousuario
-SET nombre_usuario = _usuario, contrasenia_usuario = _contrasenia, correo_usuario = _correo, rol_usuario = _rol
+SET nombre_usuario = _usuario, contrasenia_usuario = _contrasenia, correo_usuario = _correo, rol_usuario = _rol, estado_tipousuario = _estado
 WHERE id_usuario = _id;
 END //
 delimiter ;
@@ -631,22 +652,32 @@ delimiter ;
 delimiter //
 drop procedure if exists SP_AgregarCategoria //
 CREATE PROCEDURE `SP_AgregarCategoria`(
-in _nombre varchar(50)
+in _nombre varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
-insert into categoriainsumos (categoria) values (_nombre);
-select categoria from categoriainsumos where id_categoriainsumos = last_insert_id();
+SELECT @existe := categoria FROM categoriainsumos WHERE categoria = _nombre;
+IF (@existe = _nombre) THEN	
+	SELECT @existe := categoria FROM categoriainsumos WHERE categoria = _nombre;
+ELSE 
+	INSERT INTO categoriainsumos (categoria, estado_categoriainsumo) VALUES (_nombre, _estado);
+END IF;
 END //
 delimiter ;
 
 delimiter //
 drop procedure if exists SP_AgregarCategoriaProducto //
 CREATE PROCEDURE `SP_AgregarCategoriaProducto`(
-in _nombre varchar(50)
+in _nombre varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
-insert into tipoproducto (nombre_tipoproducto) values (_nombre);
-select nombre_tipoproducto from tipoproducto where id_tipoproducto = last_insert_id();
+SELECT @existe := nombre_tipoproducto FROM tipoproducto WHERE nombre_tipoproducto = _nombre;
+IF (@existe = _nombre) THEN	
+	SELECT @existe := nombre_tipoproducto FROM tipoproducto WHERE nombre_tipoproducto = _nombre;
+ELSE 
+	INSERT INTO tipoproducto (nombre_tipoproducto, estado_tipoprdoucto) VALUES (_nombre, _estado);
+END IF;
 END //
 delimiter ;
 
@@ -656,14 +687,17 @@ CREATE PROCEDURE `SP_AgregarInsumos`(
 in _nombre varchar(50),
 in _categoria varchar(50),
 in _cantidadDisponible varchar(50),
-in _cantidadIdeal varchar(50)
+in _cantidadIdeal varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
-
-SELECT @idCat := id_categoriainsumos from categoriainsumos where categoria = _categoria;
-
-insert into insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, categoriainsumos_id) values (_nombre, concat_ws(' ', _cantidadDisponible, "kg"), concat_ws(' ', _cantidadIdeal, "kg"), @idCat);
-select nombre_insumo from insumos where id_insumos = last_insert_id();
+SELECT @existe := nombre_insumo FROM insumos WHERE nombre_insumo = _nombre;
+IF (@existe = _nombre) THEN	
+	SELECT @existe := nombre_insumo FROM insumos WHERE nombre_insumo = _nombre;
+ELSE 
+	SELECT @idCat := id_categoriainsumos FROM categoriainsumos WHERE categoria = _categoria;
+	INSERT INTO insumos (nombre_insumo, cantidad_disponible, cantidad_ideal, estado_insumos, categoriainsumos_id) VALUES (_nombre,  _cantidadDisponible,  _cantidadIdeal, _estado, @idCat);
+END IF;
 END //
 delimiter ;
 
@@ -674,8 +708,12 @@ in _numeroMesa int,
 in _estado tinyint(1)
 )
 BEGIN
-insert into mesa (numero_mesa, mesa_disponible) values (_numeroMesa, _estado);
-select numero_mesa from mesa where id_mesa = last_insert_id();
+SELECT @existe := numero_mesa FROM mesa WHERE numero_mesa = _numeroMesa;
+IF (@existe = _numeroMesa) THEN	
+	SELECT @existe := numero_mesa FROM mesa WHERE numero_mesa = _numeroMesa;
+ELSE 
+	INSERT INTO mesa (numero_mesa, mesa_disponible) VALUES (_numeroMesa, _estado);
+END IF;
 END //
 delimiter ;
 
@@ -689,10 +727,13 @@ in _estado tinyint(1),
 in _tipoProducto varchar(50)
 )
 BEGIN
-SELECT @idCat := id_tipoproducto from tipoproducto where nombre_tipoproducto = _tipoProducto;
-
-insert into producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) values (_nombre, _precio, _urlImagen, _estado, @idCat);
-select nombre_producto from producto where id_producto = last_insert_id();
+SELECT @existe := nombre_producto FROM producto WHERE nombre_producto = _nombre;
+IF (@existe IS NOT NULL) THEN	
+	SELECT @existe := nombre_producto FROM producto WHERE nombre_producto = _nombre;
+ELSE 
+	SELECT @idCat := id_tipoproducto from tipoproducto where nombre_tipoproducto = _tipoProducto;
+	INSERT INTO producto (nombre_producto, precio_producto, imagen_producto, estado_producto, tipoproducto_id) VALUES (_nombre, _precio, _urlImagen, _estado, @idCat);
+END IF;
 END //
 delimiter ;
 
@@ -702,11 +743,16 @@ CREATE PROCEDURE `SP_AgregarProveedor`(
 in _rut varchar(50),
 in _nombre varchar(50),
 in _tipoProveedor varchar(200),
-in _contacto varchar(50)
+in _contacto varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
-INSERT INTO proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor) values (_rut, _nombre, _tipoProveedor, _contacto);
-SELECT nombre_proveedor FROM proveedor WHERE id_proveedor = last_insert_id();
+SELECT @existe := rut_proveedor FROM proveedor WHERE rut_proveedor = _rut;
+IF (@existe = _rut) THEN	
+	SELECT @existe := rut_proveedor FROM proveedor WHERE rut_proveedor = _rut;
+ELSE 
+	INSERT INTO proveedor (rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor, estado_proveedor) values (_rut, _nombre, _tipoProveedor, _contacto, _estado);
+END IF;
 END //
 delimiter ;
 
@@ -716,85 +762,16 @@ CREATE PROCEDURE `SP_AgregarUsuario`(
 in _usuario varchar(50),
 in _contrasenia varchar(50),
 in _correo varchar(200),
-in _rol varchar(50)
+in _rol varchar(50),
+in _estado tinyint(1)
 )
 BEGIN
-insert into tipousuario (nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario) values (_usuario, _contrasenia, _correo, _rol);
-select nombre_usuario from tipousuario where id_usuario = last_insert_id();
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarCategoria //
-CREATE PROCEDURE `SP_EliminarCategoria`(
-in _nombreCategoria varchar(50)
-)
-BEGIN
-SELECT @idCat := id_categoriainsumos from categoriainsumos where categoria = _nombreCategoria;
-
-DELETE FROM categoriainsumos WHERE id_categoriainsumos=@idCat;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarCategoriaProducto //
-CREATE PROCEDURE `SP_EliminarCategoriaProducto`(
-in _nombreCategoria varchar(50)
-)
-BEGIN
-SELECT @idCat := id_tipoproducto from tipoproducto where nombre_tipoproducto = _nombreCategoria;
-
-DELETE FROM tipoproducto WHERE id_tipoproducto=@idCat;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarInsumos //
-CREATE PROCEDURE `SP_EliminarInsumos`(
-in _id int
-)
-BEGIN
-DELETE FROM insumos WHERE id_insumos=_id;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarMesas //
-CREATE PROCEDURE `SP_EliminarMesas`(
-in _id int
-)
-BEGIN
-DELETE FROM mesa WHERE id_mesa = _id;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarProductos //
-CREATE PROCEDURE `SP_EliminarProductos`(
-in _id int
-)
-BEGIN
-DELETE FROM producto WHERE id_producto=_id;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarProveedor //
-CREATE PROCEDURE `SP_EliminarProveedor`(
-in _id int
-)
-BEGIN
-DELETE FROM proveedor WHERE id_proveedor=_id;
-END //
-delimiter ;
-
-delimiter //
-drop procedure if exists SP_EliminarUsuario //
-CREATE PROCEDURE `SP_EliminarUsuario`(
-in _id int
-)
-BEGIN
-DELETE FROM tipousuario WHERE id_usuario=_id;
+SELECT @existe := nombre_usuario FROM tipousuario WHERE nombre_usuario = _usuario;
+IF (@existe = _usuario) THEN
+	SELECT @existe := nombre_usuario FROM tipousuario WHERE nombre_usuario = _usuario;
+ELSE 
+	INSERT INTO tipousuario (nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario, estado_tipousuario) VALUES (_usuario, _contrasenia, _correo, _rol, _estado);
+END IF;
 END //
 delimiter ;
 
@@ -808,7 +785,7 @@ begin
 
 SELECT rol_usuario
   FROM tipousuario
-  WHERE nombre_usuario = _usuario AND contrasenia_usuario = _contrasenia;
+  WHERE nombre_usuario = _usuario AND contrasenia_usuario = _contrasenia AND estado_tipousuario = 1;
 END //
 delimiter ;
 
@@ -816,7 +793,7 @@ delimiter //
 drop procedure if exists SP_MostrarInsumos //
 CREATE PROCEDURE `SP_MostrarInsumos`()
 BEGIN
-SELECT id_insumos, nombre_insumo, categoria, cantidad_disponible, cantidad_ideal
+SELECT id_insumos, nombre_insumo, categoria, cantidad_disponible, cantidad_ideal, IF(estado_insumos = true, "Activo", "Inactivo") estado_insumos
 FROM insumos 
 INNER JOIN categoriainsumos   
 ON insumos.categoriainsumos_id = categoriainsumos.id_categoriainsumos ORDER BY id_insumos ASC;
@@ -827,7 +804,6 @@ delimiter //
 drop procedure if exists SP_MostrarMesas //
 CREATE PROCEDURE `SP_MostrarMesas`()
 BEGIN
-
 SELECT id_mesa, numero_mesa, IF(mesa_disponible = true, "Disponible", "No Disponible") mesa_disponible
 FROM mesa;
 END //
@@ -849,25 +825,433 @@ delimiter //
 drop procedure if exists SP_MostrarProveedores //
 CREATE PROCEDURE `SP_MostrarProveedores`()
 BEGIN
-SELECT id_proveedor, rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor FROM proveedor;
+SELECT id_proveedor, rut_proveedor, nombre_proveedor, tipo_proveedor, contacto_proveedor, IF(estado_proveedor = true, "Activo", "Inactivo") estado_proveedor FROM proveedor;
 END //
 delimiter ;
 
-delimiter //
-drop procedure if exists SP_MostrarRecetas //
-CREATE PROCEDURE `SP_MostrarRecetas`()
-BEGIN
-SELECT id_producto, nombre_producto, precio_producto, imagen_producto, nombre_tipoproducto, estado_producto
-FROM producto 
-INNER JOIN tipoproducto   
-ON producto.tipoproducto_id = tipoproducto.id_tipoproducto ORDER BY id_producto ASC;
-END //
-delimiter ;
 
 delimiter //
 drop procedure if exists SP_MostrarUsuarios //
 CREATE PROCEDURE `SP_MostrarUsuarios`()
 BEGIN
-Select id_usuario, nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario from tipousuario;
+SELECT id_usuario, nombre_usuario, contrasenia_usuario, correo_usuario, rol_usuario, IF(estado_tipousuario = true, "Activo", "Inactivo") estado_tipousuario FROM tipousuario;
 END //
 delimiter ;
+
+
+
+delimiter //
+drop procedure if exists SP_ActualizarCategoriaProducto //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ActualizarCategoriaProducto`(
+in _categoriaAnterior varchar(50),
+in _nombreCategoria varchar(50),
+in _estado tinyint(1)
+)
+BEGIN
+SELECT @idCat := id_tipoproducto from tipoproducto where nombre_tipoproducto = _categoriaAnterior;
+
+UPDATE tipoproducto
+SET nombre_tipoproducto = _nombreCategoria, estado_tipoprdoucto = _estado
+WHERE id_tipoproducto = @idCat;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_ActualizarEstadoCocina //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ActualizarEstadoCocina`(
+in _numeroMesa varchar(50),
+in _estado tinyint(1),
+in _producto varchar(50)
+)
+BEGIN
+UPDATE panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa
+SET estado_cocina = _estado
+WHERE numero_mesa = _numeroMesa AND nombre_producto = _producto;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_ActualizarEstadoGarzon //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ActualizarEstadoGarzon`(
+in _numeroMesa varchar(50),
+in _estado tinyint(1),
+in _producto varchar(50)
+)
+BEGIN
+UPDATE panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa
+SET estado_garzon = _estado
+WHERE numero_mesa = _numeroMesa AND nombre_producto = _producto;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarCategoriaInsumos //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarCategoriaInsumos`()
+BEGIN
+SELECT categoria, IF(estado_categoriainsumo = true, "Activo", "Inactivo") estado_categoriainsumo
+FROM categoriainsumos;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarCategoriaProductos //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarCategoriaProductos`()
+BEGIN
+SELECT nombre_tipoproducto, IF(estado_tipoproducto = true, "Activo", "Inactivo") estado_tipoproducto
+FROM tipoproducto;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarListaPedidos //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarListaPedidos`(
+in _numeroMesa varchar(50)
+)
+BEGIN
+select 
+id_panelcocina,
+sum(cantidad_carrito) cantidad_carrito,
+sum(precio_producto) * cantidad_carrito as precio_producto,
+nombre_producto,
+IF(estado_cocina = true, "Confirmado", "Pendiente") estado_cocina,
+IF(estado_garzon = true, "Confirmado", "Pendiente") estado_garzon,
+numero_mesa,
+concat(nombre_cliente,' ',apellido_cliente) as cliente,
+correo_cliente
+from panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa where estado_cocina and estado_garzon != 0 and numero_mesa = _numeroMesa group by nombre_producto, cliente, correo_cliente order by id_panelcocina desc;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarPedidosCarrito //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarPedidosCarrito`()
+BEGIN
+select 
+id_panelcocina,
+sum(cantidad_carrito) cantidad_carrito,
+nombre_producto,
+IF(estado_cocina = true, "Confirmado", "Pendiente") estado_cocina,
+IF(estado_garzon = true, "Confirmado", "Pendiente") estado_garzon,
+numero_mesa,
+concat(nombre_cliente,' ',apellido_cliente) as cliente,
+correo_cliente
+from panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa group by  nombre_producto, cliente, correo_cliente order by id_panelcocina desc;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_MostrarPedidosCocina //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarPedidosCocina`()
+BEGIN
+select 
+id_panelcocina,
+sum(cantidad_carrito) cantidad_carrito,
+nombre_producto,
+IF(estado_cocina = true, "Confirmado", "Pendiente") estado_cocina,
+IF(estado_garzon = true, "Confirmado", "Pendiente") estado_garzon,
+numero_mesa,
+concat(nombre_cliente,' ',apellido_cliente) as cliente,
+correo_cliente
+from panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa where estado_cocina = 0 group by nombre_producto, cliente, correo_cliente order by id_panelcocina desc;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_MostrarPedidosGarzon //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarPedidosGarzon`()
+BEGIN
+select 
+id_panelcocina,
+sum(cantidad_carrito) cantidad_carrito,
+nombre_producto,
+IF(estado_cocina = true, "Confirmado", "Pendiente") estado_cocina,
+IF(estado_garzon = true, "Confirmado", "Pendiente") estado_garzon,
+numero_mesa,
+concat(nombre_cliente,' ',apellido_cliente) as cliente,
+correo_cliente
+from panelcocina
+inner join carrito
+on carrito_id = carrito.id_carrito
+inner join producto
+on producto_id = producto.id_producto
+inner join reserva
+on reserva_id = reserva.id_reserva
+inner join clientes
+on clientes_id = clientes.id_clientes
+inner join mesa
+on mesa_id = mesa.id_mesa where estado_cocina and estado_garzon != 1  group by nombre_producto, cliente, correo_cliente order by id_panelcocina desc;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_RealizarPagoCajero //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RealizarPagoCajero`(
+in _montoActualizar int
+)
+BEGIN
+SELECT @ultimoId := MAX(id_registrocajero)  FROM registrocajero;
+SELECT @ultimoIdCerrar := MAX(id_registrocajero)  FROM registrocajero where isnull(fecha_cierre);
+                            
+IF (isnull(@ultimoIdCerrar)) THEN	
+	SELECT MAX(monto_inicial)  FROM registrocajero;
+
+ELSE 
+	UPDATE registrocajero
+	SET monto_final = monto_final + _montoActualizar
+	WHERE id_registrocajero = @ultimoIdCerrar;
+    
+    
+	DELETE FROM panelcocina
+	WHERE id_panelcocina = id_panelcocina
+	LIMIT 500;
+END IF;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_RegistrarApertura //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegistrarApertura`(
+in _usuario varchar(50),
+in _montoInicial int,
+in _montoFinal int,
+in _fechaApertura datetime
+)
+BEGIN
+SELECT @ultimoId := MAX(id_registrocajero)  FROM registrocajero;
+SELECT @ultimoIdCerrar := MAX(id_registrocajero)  FROM registrocajero where isnull(fecha_cierre);
+
+IF (isnull(@ultimoIdCerrar)) THEN	
+	SELECT @idUsuarioIngreso := id_usuario from tipousuario where nombre_usuario = _usuario;
+	INSERT INTO registrocajero (usuario_id, monto_inicial, monto_final, fecha_apertura) VALUES (@idUsuarioIngreso,  _montoInicial, _montoFinal,  _fechaApertura);
+
+ELSE 
+	SELECT MAX(monto_inicial)  FROM registrocajero;
+END IF;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_TerminarApertura //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TerminarApertura`(
+in _usuario varchar(50),
+in _montoFinal int,
+in _fechaCierre datetime
+)
+BEGIN
+SELECT @ultimoId := MAX(id_registrocajero)  FROM registrocajero;
+
+UPDATE registrocajero
+SET monto_final = _montoFinal, fecha_cierre = _fechaCierre
+WHERE id_registrocajero = @ultimoId;
+
+END //
+delimiter ;
+
+
+
+
+
+
+delimiter //
+drop procedure if exists SP_AgregarCliente //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgregarCliente`(
+in _nombre varchar(50),
+in _apellido varchar(50),
+in _rut varchar(11),
+in _telefono varchar(50),
+in _correo varchar(200)
+)
+BEGIN
+SELECT @existe := rut_cliente FROM clientes WHERE rut_cliente = _rut;
+IF (@existe = _rut) THEN
+	SELECT @existe := rut_cliente FROM clientes WHERE rut_cliente = _rut;
+ELSE 
+	INSERT INTO clientes (nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente) VALUES (_nombre, _apellido, _rut, _telefono, _correo);
+END IF;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_ActualizarCliente //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ActualizarCliente`(
+in _idCliente int,
+in _nombre varchar(50),
+in _apellido varchar(50),
+in _rut varchar(11),
+in _telefono varchar(50),
+in _correo varchar(200)
+)
+BEGIN
+UPDATE clientes
+SET nombre_cliente = _nombre, apellido_cliente = _apellido, rut_cliente = _rut, telefono_cliente = _telefono, correo_cliente = _correo
+WHERE id_clientes = _idCliente;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_MostrarClientes //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarClientes`()
+BEGIN
+SELECT id_clientes, nombre_cliente, apellido_cliente, rut_cliente, telefono_cliente, correo_cliente FROM clientes;
+END
+ //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_AgregarReceta //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgregarReceta`(
+in _nombreReceta varchar(100),
+in _descripcion varchar(200),
+in _estado tinyint(1)
+)
+BEGIN
+SELECT @existe := nombre_receta FROM recetas WHERE nombre_receta = _nombreReceta;
+IF (@existe = _nombreReceta) THEN
+	SELECT @existe := nombre_receta FROM recetas WHERE nombre_receta = _nombreReceta;
+ELSE 
+	INSERT INTO recetas (nombre_receta, descripcion_receta, estado_receta) VALUES (_nombreReceta, _descripcion, _estado);
+END IF;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_ActualizarReceta //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ActualizarReceta`(
+in _idReceta int,
+in _nombreReceta varchar(100),
+in _descripcion varchar(200),
+in _estado tinyint(1)
+)
+BEGIN
+UPDATE recetas
+SET nombre_receta = _nombreReceta, descripcion_receta = _descripcion, estado_receta = _estado
+WHERE id_recetas = _idReceta;
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarRecetas //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarRecetas`()
+BEGIN
+SELECT id_recetas, nombre_receta, descripcion_receta, IF(estado_receta = true, "Activo", "Inactivo") estado_receta FROM recetas;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_AgregarHistorial //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgregarHistorial`(
+in _id int,
+in _nombreInsumo varchar(50),
+in _cantidadDisponible varchar(50),
+in _fechaCambio date,
+in _cantidadInicial varchar(50),
+in _responsable varchar(50)
+)
+BEGIN
+INSERT INTO historialinsumos (nombre_insumo_historial, fecha_historial, cantidad_inicial_historial, cantidad_final_historial, responsable, insumos_id) VALUES (_nombreInsumo,  _fechaCambio,  _cantidadInicial, _cantidadDisponible, _responsable, _id);
+END //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_MostrarHistorialCambios //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_MostrarHistorialCambios`()
+BEGIN
+SELECT id_historialinsumos, nombre_insumo_historial, fecha_historial, cantidad_inicial_historial, cantidad_final_historial, responsable, insumos_id FROM historialinsumos;
+END //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_EliminarVentaUsuario //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_EliminarVentaUsuario`()
+BEGIN
+TRUNCATE TABLE panelcocina;
+
+TRUNCATE TABLE carrito;
+
+END
+ //
+delimiter ;
+
+
+delimiter //
+drop procedure if exists SP_AgregarVenta //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_AgregarVenta`(
+in _claveTransaccion varchar(250),
+in _fechaVenta datetime,
+in _totalVenta int,
+in _estadoVenta varchar(200),
+in _tipoPago varchar(50)
+)
+BEGIN
+INSERT INTO ventas (clavetransaccion, fecha_newventa, total_newventa, estado_newventa, tipopago) VALUES (_claveTransaccion, _fechaVenta, _totalVenta, _estadoVenta, _tipoPago);
+END
+ //
+delimiter ;
+
+delimiter //
+drop procedure if exists SP_TraerMontoTotalCaja //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_TraerMontoTotalCaja`()
+BEGIN
+SELECT monto_final FROM registrocajero WHERE isnull(fecha_cierre);
+END
+ //
+delimiter ;
+
