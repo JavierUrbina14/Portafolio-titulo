@@ -64,12 +64,111 @@
     align-items: center;
 }
 
-.ancarrito{
-    text-align: center;
-}
+
 
 .formulario__btnsubmenu:hover {
     cursor: pointer;
     background-color: v.$naranjaopaco;
 }
 
+.carritoItem{
+    width: 3rem;
+    height: 3rem;
+    
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    font-family: v.$fuenteSecundaria;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carrito{
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.accionfinal,
+.accionfinal button{
+    text-align: center;
+    margin: 1rem;
+}
+
+.modal-content h2{
+    text-align: center;
+}
+
+tfoot td{
+    border-top: .2rem solid #000;
+}
+#myBtn:hover{
+    cursor: pointer;
+}
+
+.separaciones-prod{
+    background: rgb(49,108,103);
+    background: linear-gradient(90deg, rgba(49,108,103,1) 8%, rgba(119,180,176,1) 41%, rgba(224,242,235,0.4990371148459384) 83%);
+    color: #fff;
+    padding-left: 1.5rem;
+    border-radius: .5rem;
+    margin: 3rem 0;
+}
+
+.categoria-comida{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    column-gap: 3rem;
+    row-gap: 3rem;
+    
+}
+
+.categoria-comida a{
+    font-size: 3rem;
+    font-family: v.$fuenteSecundaria;
+    text-decoration: none;
+    color: #000;
+    border: #000 solid .25rem;
+    border-radius: .5rem;
+}
+
+.categoria-comida-title{
+    text-align: center;
+    font-family: v.$fuenteSecundaria;
+}

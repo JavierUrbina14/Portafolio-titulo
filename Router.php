@@ -37,7 +37,7 @@ class Router {
         
     }
 
-    //Muestra una visat
+    //Muestra una vista
 
     public function render($view, $datos = [] )
     {

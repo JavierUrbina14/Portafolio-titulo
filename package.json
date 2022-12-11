@@ -23,5 +23,19 @@
     "nodemon": "^2.0.20",
     "query-selector": "^2.0.0",
     "sweetalert2": "^11.6.15"
-  }
+  },
+  "name": "portafolio-titulo",
+  "description": "*Proyecto desarrollado en PHP8 con SASS y Javascript*",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavierUrbina14/Portafolio-titulo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavierUrbina14/Portafolio-titulo/issues"
+  },
+  "homepage": "https://github.com/JavierUrbina14/Portafolio-titulo#readme"
 }

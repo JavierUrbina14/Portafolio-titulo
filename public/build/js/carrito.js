@@ -3,19 +3,31 @@
 const templateCard = document.querySelector('#template-card').content;
 const templateFooter = document.querySelector('#template-footer').content;
 const templateCarrito = document.querySelector('#template-carrito').content;
-const items = document.querySelector('#items')
+const templateAccionFinal = document.querySelector('#template-accionfinal').content;
+const accionFinal = document.querySelector('.accionfinal')
+const especialidades = document.querySelector('#especialidades')
+const agregados = document.querySelector('#agregados')
+const ensaladas = document.querySelector('#ensaladas')
+const deliciasPueblo = document.querySelector('#delicias-pueblo')
+const postresCaseros = document.querySelector('#postres-caseros')
+const aperitivos = document.querySelector('#aperitivos')
+const tragos = document.querySelector('#tragos')
+const bajativos = document.querySelector('#bajativos')
+const vinos = document.querySelector('#vinos')
 const contenido = document.querySelector('#contenidojs');
 const footer = document.querySelector('#footer')
+const navegacion = document.querySelector('.navegacion-principal');
 
 //Se crea un fragment que es una memoria volatíl para evitar el reflow
 const fragment = document.createDocumentFragment();
+
 //Creamos una variable para el carrito
 let carrito = {}
 
 //Iniciamos el proceso DOM
 document.addEventListener('DOMContentLoaded', () => {
     //Ejecutamos la función que traera toda la información
-    fetchData();
+    iniciarApp();
 
     //Guardamos y mantenemos la informacion dentro del local storage
     if(localStorage.getItem('carrito')){
@@ -25,8 +37,37 @@ document.addEventListener('DOMContentLoaded', () => {
         pintarCarrito()
     }
 })
+
+function iniciarApp() {
+    fetchData();
+    scrollNav();
+}
 //Evento para añadir al carrito
-contenido.addEventListener('click', e => {
+especialidades.addEventListener('click', e => {
+    addCarrito(e)
+})
+agregados.addEventListener('click', e => {
+    addCarrito(e)
+})
+ensaladas.addEventListener('click', e => {
+    addCarrito(e)
+})
+deliciasPueblo.addEventListener('click', e => {
+    addCarrito(e)
+})
+postresCaseros.addEventListener('click', e => {
+    addCarrito(e)
+})
+aperitivos.addEventListener('click', e => {
+    addCarrito(e)
+})
+tragos.addEventListener('click', e => {
+    addCarrito(e)
+})
+bajativos.addEventListener('click', e => {
+    addCarrito(e)
+})
+vinos.addEventListener('click', e => {
     addCarrito(e)
 })
 //Evento para disminuir o aumentar la cantidad de los productos
@@ -55,25 +96,70 @@ const fetchData = async () => {
 
 const alterarFormulario = data =>{
     //Recorremos la informacion extraida de la api
-    data.forEach(producto => {
-        //Asignamos los valores al template
-        templateCard.querySelector('.producto__nombre').textContent = producto.nombre_producto
-        templateCard.querySelector('.producto__precio').textContent = producto.precio_producto
-        templateCard.querySelector('.producto__imagen').setAttribute("src", producto.imagen_producto)
-        //Al boton le asignamos un atributo con el valir del id_producto
-        //Esto sirve para poder agregar al carrito dependiendo del boton que se clickee
-        templateCard.querySelector('.formulario__btnsubmenu').dataset.id = producto.id_producto
+    
+        data.forEach(producto => {
+            templateCard.querySelector('.producto__nombre').textContent = producto.nombre_producto
+            templateCard.querySelector('.producto__nombre').dataset.id = producto.tipoproducto_id
+            templateCard.querySelector('.producto__precio').textContent = producto.precio_producto
+            templateCard.querySelector('.producto__imagen').setAttribute("src", producto.imagen_producto)
+            templateCard.querySelector('.formulario__btnsubmenu').dataset.id = producto.id_producto
+            switch(templateCard.querySelector('.producto__nombre').dataset.id){
+                case "1":
+                    const especialidades_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(especialidades_prod)
+                    especialidades.appendChild(fragment)
+                    break;
+                case "2":
+                    const agregados_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(agregados_prod)
+                    agregados.appendChild(fragment)
+                    break;
+                case "3":
+                    const ensaladas_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(ensaladas_prod)
+                    ensaladas.appendChild(fragment)
+                    break;
+                case "4":
+                    const deliciasPueblo_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(deliciasPueblo_prod)
+                    deliciasPueblo.appendChild(fragment)
+                    break;
+                case "5":
+                    const postresCaseros_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(postresCaseros_prod)
+                    postresCaseros.appendChild(fragment)
+                    break;
+                case "6":
+                    const aperitivos_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(aperitivos_prod)
+                    aperitivos.appendChild(fragment)
+                    break;
+                case "7":
+                    const tragos_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(tragos_prod)
+                    tragos.appendChild(fragment)
+                    break;
+                case "8":
+                    const bajativos_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(bajativos_prod)
+                    bajativos.appendChild(fragment)
+                    break;
+                case "9":
+                    const vinos_prod = templateCard.cloneNode(true)
+                    fragment.appendChild(vinos_prod)
+                    vinos.appendChild(fragment)
+                    break;
+            }
+            
+            
+            })
+        
+    }
 
-        //Clonamos el nodo y lo agregamos al fragment
-        const clone = templateCard.cloneNode(true)
-        fragment.appendChild(clone)
-    });
-    //una vez el fragment tenga toda la info del foreach, lo añadimos y modificamos el html
-    contenido.appendChild(fragment)
-}
 
 const addCarrito = e => {
     //Tomamos la informacion del boton con la id_producto
+    console.log(e.target)
     if (e.target.classList.contains('formulario__btnsubmenu')){
         //lo enviamos a la funcion que leera la informacion
         setCarrito(e.target.parentElement)
@@ -87,6 +173,7 @@ const setCarrito = objeto => {
         id: objeto.querySelector('.formulario__btnsubmenu').dataset.id,
         title: objeto.querySelector('.producto__nombre').textContent,
         precio: objeto.querySelector('.producto__precio').textContent,
+        tipoproducto: objeto.querySelector('.producto__nombre').dataset.id,
         //la cantidad se iniciara en 1
         cantidad: 1
     }
@@ -97,6 +184,7 @@ const setCarrito = objeto => {
     }
     //Tomamos la informacion que tiene el carrito por su id
     carrito[product.id] = {...product}
+    console.log(carrito)
     //Y lo pintamos
     pintarCarrito()
 }
@@ -104,12 +192,15 @@ const setCarrito = objeto => {
 const pintarCarrito = () => {
     //Pintar carrito contara con los items vacios para no tener problemas
     items.innerHTML = ''
+
+    
     //Tomamos el valor del objeto "carrito" y lo iteramos
     Object.values(carrito).forEach(product => {
+        
         //La informacion se pinta en el html dentro de sus tablas correspondientes
-        templateCarrito.querySelector('th').textContent = product.id
         templateCarrito.querySelectorAll('td')[0].textContent = product.title
-        templateCarrito.querySelectorAll('td')[1].textContent = product.cantidad
+        templateCarrito.querySelectorAll('td')[0].dataset.id = product.tipoproducto
+        templateCarrito.querySelectorAll('td')[2].textContent = product.cantidad
         templateCarrito.querySelector('.btn-info').dataset.id = product.id
         templateCarrito.querySelector('.btn-danger').dataset.id = product.id
         templateCarrito.querySelector('span').textContent = product.cantidad * product.precio
@@ -119,7 +210,40 @@ const pintarCarrito = () => {
         fragment.appendChild(clone)
     })
     //y los contenidos que almacena el fragment se lo pasa al query selector de items para pintarlos
-    items.appendChild(fragment)
+    items.appendChild(fragment);
+
+    console.log(carrito)
+
+
+    // switch(tipoproducto){
+    //     case '1':
+    //         especialidades.appendChild(fragment)
+    //         break;
+    //     case '2':
+    //         agregados.appendChild(fragment)
+    //         break;
+    //     case '3':
+    //         ensaladas.appendChild(fragment)
+    //         break;
+    //     case '4':
+    //         deliciasPueblo.appendChild(fragment)
+    //         break;
+    //     case '5':
+    //         postresCaseros.appendChild(fragment)
+    //         break;
+    //     case '6':
+    //         aperitivos.appendChild(fragment)
+    //         break;
+    //     case '7':
+    //         tragos.appendChild(fragment)
+    //         break;
+    //     case '8':
+    //         bajativos.appendChild(fragment)
+    //         break;
+    //     case '9':
+    //         vinos.appendChild(fragment)
+    //         break;
+    // }
 
     //llamamos a la funcion para ver los resultados totales
     pintarFooter()
@@ -131,6 +255,7 @@ const pintarCarrito = () => {
 const pintarFooter = () =>{
     //iniciamos el queryselector vacio para evitar problemas
     footer.innerHTML= ''
+    accionFinal.innerHTML=''
     //Si el carrito esta vacio...
     if(Object.keys(carrito).length === 0) {
         //añadimos codigo html que hacer visible que el carrito esta vacio
@@ -154,7 +279,8 @@ const pintarFooter = () =>{
     //y lo añadimos al template con el fragment
     footer.appendChild(fragment)
 
-    //Creamos una variable que tendra un queryselector de un boton para vaciar el carrito
+    accionFinal.innerHTML='<button class="btn btn-danger btn-sm" id="vaciar-carrito">vaciar todo</button><button class="btn btn-danger btn-sm" id="ordenarCompra">ordenar compra</button>'
+
     const btnVaciar = document.querySelector('#vaciar-carrito')
     //A travez de un evento, vaciamos el carrito y lo pintamos
     btnVaciar.addEventListener('click', () => {
@@ -167,7 +293,24 @@ const pintarFooter = () =>{
     //Le asignamos la función de ordenar pedido al boton
     btnOrdenar.onclick = ordenarPedido;
 
+
+
+    //Creamos una variable que tendra un queryselector de un boton para vaciar el carrito
+    
+
 }
+
+// const btnVaciar = document.querySelector('#vaciar-carrito')
+//     //A travez de un evento, vaciamos el carrito y lo pintamos
+//     btnVaciar.addEventListener('click', () => {
+//         carrito = {}
+//         pintarCarrito()
+//     })
+
+//     //Creamos un query selector para el boton de ordenar
+//     const btnOrdenar = document.querySelector('#ordenarCompra')
+//     //Le asignamos la función de ordenar pedido al boton
+//     btnOrdenar.onclick = ordenarPedido;
 
 function ordenarPedido() { 
     //Creo el form data
@@ -190,7 +333,6 @@ function ordenarPedido() {
 
         //console.log([...orden])
         
-      
         //Enviamos la información a la api
         const url = 'http://localhost:3000/api/orden'
         const respuesta = await fetch(url, {
@@ -223,4 +365,32 @@ const btnAccion = e => {
     e.stopPropagation()
 }
 
+navegacion.innerHTML= '<a id="linkReservacion" href="/reservacion">Reservación</a><a id="linkMenu" href="/menu">Menú</a><a id="myBtn"><img class="carritoItem" src="build/img/carrito.png" alt=""></a>'
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
+}
 
+function scrollNav() {
+    const enlaces = document.querySelectorAll('.categoria-comida a')
+    enlaces.forEach(enlace => {
+        enlace.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const seccionScroll = e.target.attributes.href.value;
+            const seccion = document.querySelector(seccionScroll);
+            seccion.scrollIntoView({ behavior: "smooth" });
+        })
+
+    })
+}

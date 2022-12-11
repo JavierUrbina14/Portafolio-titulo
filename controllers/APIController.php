@@ -59,13 +59,13 @@ class APIController {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
         $mail->SMTPAuth = true;
-        $mail->Username = 'RecibosSigloXXI@gmail.com';
-        $mail->Password = 'fqavycnnbzrhivih';
+        $mail->Username = 'c.restaurantsigloxxi@gmail.com';
+        $mail->Password = 'ueejmpewueclqhra';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         
         //configurar el Contenido Email
-        $mail->setFrom('RecibosSigloXXI@gmail.com');
+        $mail->setFrom('c.restaurantsigloxxi@gmail.com');
         $mail->addAddress('htorres332.jt@gmail.com', 'Javier User');
         $mail->Subject = 'Recibo restaurante';
 
@@ -234,7 +234,5 @@ class APIController {
         $respuesta = $pagopaypal->insercionpaypal();
         
         echo json_encode($respuesta);
-
-       
     }
 }
